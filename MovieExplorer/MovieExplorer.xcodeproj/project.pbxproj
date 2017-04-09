@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9914B4EB1E9A84DC0007B113 /* StaticTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9914B4EA1E9A84DC0007B113 /* StaticTest.swift */; };
 		99D09D151E9A2D0900F6C769 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D09D141E9A2D0900F6C769 /* AppDelegate.swift */; };
 		99D09D171E9A2D0900F6C769 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D09D161E9A2D0900F6C769 /* ViewController.swift */; };
 		99D09D1A1E9A2D0900F6C769 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99D09D181E9A2D0900F6C769 /* Main.storyboard */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9914B4EA1E9A84DC0007B113 /* StaticTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticTest.swift; sourceTree = "<group>"; };
 		99D09D111E9A2D0900F6C769 /* MovieExplorer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieExplorer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99D09D141E9A2D0900F6C769 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		99D09D161E9A2D0900F6C769 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				99D09D451E9A2DE900F6C769 /* Properties */,
 				99D09D201E9A2D0900F6C769 /* LaunchScreen.storyboard */,
 				99D09D1B1E9A2D0900F6C769 /* MovieExplorer.xcdatamodeld */,
+				9914B4EA1E9A84DC0007B113 /* StaticTest.swift */,
 			);
 			path = MovieExplorer;
 			sourceTree = "<group>";
@@ -276,6 +279,7 @@
 				99D09D171E9A2D0900F6C769 /* ViewController.swift in Sources */,
 				99D09D151E9A2D0900F6C769 /* AppDelegate.swift in Sources */,
 				99D09D1D1E9A2D0900F6C769 /* MovieExplorer.xcdatamodeld in Sources */,
+				9914B4EB1E9A84DC0007B113 /* StaticTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -528,6 +532,7 @@
 				99D09D3E1E9A2D0900F6C769 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		99D09D3F1E9A2D0900F6C769 /* Build configuration list for PBXNativeTarget "MovieExplorerTests" */ = {
 			isa = XCConfigurationList;
@@ -536,6 +541,7 @@
 				99D09D411E9A2D0900F6C769 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		99D09D421E9A2D0900F6C769 /* Build configuration list for PBXNativeTarget "MovieExplorerUITests" */ = {
 			isa = XCConfigurationList;
@@ -544,6 +550,7 @@
 				99D09D441E9A2D0900F6C769 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
