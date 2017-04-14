@@ -66,10 +66,33 @@ class ViewController: UIViewController {
         //        }
         
         writeText(from: 12, to: 14)
+        
+        try! throwAnException()
+        
+        do {
+            try throwAnException()
+        } catch StrangeError.unbelievableError {
+            print("caught exception")
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
     }
     
     func writeText(from val: Int, to path: Int) -> Int {
         return 1;
     }
+    
+    func throwAnException() throws {
+        
+    }
 }
 
+enum StrangeError: Error {
+    case unbelievableError
+}
+
+class SomeClass {
+    
+    var
+}
