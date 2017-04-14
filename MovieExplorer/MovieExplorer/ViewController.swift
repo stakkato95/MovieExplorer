@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class ViewController: UIViewController {
     
@@ -94,5 +95,4 @@ enum StrangeError: Error {
 
 class SomeClass {
     
-    var
 }
