@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
 
-class ImageConfigurationResponse: Mappable {
+class ImagesConfigurationResponse: Mappable {
     
     var imagesConfiguration: ImagesConfiguration?
     

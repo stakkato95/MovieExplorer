@@ -9,11 +9,11 @@
 import Foundation
 import Alamofire
 
-enum Router: URLRequestConvertible {
+enum Router {
     
     case getImagesConfiguration(apiKey: String)
     
-    case getNowPlayingMovies(pageOrdingal: Int, apiKey: String)
+    case getNowPlayingMovies(pageOrdinal: Int, apiKey: String)
     
     case getTopRatedMovies(pageOrdinal: Int, apiKey: String)
     
@@ -27,57 +27,74 @@ enum Router: URLRequestConvertible {
     
     static let baseUrl = "http://api.themoviedb.org/3"
     
-    func asURLRequest() throws -> URLRequest {
-        let result: (method: HTTPMethod, path: String, parameters: Parameters)? = {
-            switch self {
-            case let .getImagesConfiguration(apiKey) :
-                return (
-                    HTTPMethod.get,
-                    "/configuration",
-                    ["apiKey" : apiKey ]
-                )
-            case let .getNowPlayingMovies(pageOrdinal, apiKey):
-                return (
-                    HTTPMethod.get,
-                    "/movie/now_playing",
-                    [ "apiKey" : apiKey, "page" : pageOrdinal, "sort_by" : "popularity.des" ]
-                )
-            case let .getTopRatedMovies(pageOrdinal, apiKey):
-                return (
-                    HTTPMethod.get,
-                    "/movie/top_rated",
-                    [ "apiKey" : apiKey, "page" : pageOrdinal, "sort_by" : "popularity.des" ]
-                )
-            case let .getPopularMovies(pageOrdinal, apiKey):
-                return (
-                    HTTPMethod.get,
-                    "/movie/popular",
-                    [ "apiKey" : apiKey, "page" : pageOrdinal, "sort_by" : "popularity.des" ]
-                )
-            case let .getSimilarMovies(movieId, apiKey):
-                return (
-                    HTTPMethod.get,
-                    "/movie/\(movieId)/similar",
-                    [ "apiKey" : apiKey ]
-                )
-            case let .getMovieVideoInformation(movieId, apiKey):
-                return (
-                    HTTPMethod.get,
-                    "/movie/\(movieId)/videos",
-                    [ "apiKey" : apiKey ]
-                )
-            case let .getMovieDetails(movieId, apiKey):
-                return (
-                    HTTPMethod.get,
-                    "/movie/\(movieId)",
-                    [ "apiKey" : apiKey ]
-                )
-            }
-        }()
-        
-        let url = try Router.baseUrl.asURL()
-        let urlRequest = try URLRequest(url: url.appendingPathComponent(result!.path), method: result!.method)
-        
-        return try URLEncoding.default.encode(urlRequest, with: result!.parameters)
+    var path: String {
+        switch self {
+        case .getImagesConfiguration:
+            return "\(Router.baseUrl)/configuration"
+        case .getNowPlayingMovies:
+            return "\(Router.baseUrl)/movie/now_playing"
+        case .getTopRatedMovies:
+            return "\(Router.baseUrl)/movie/top_rated"
+        case .getPopularMovies:
+            return "\(Router.baseUrl)/movie/popular"
+        case let .getSimilarMovies(movieId, _):
+            return "\(Router.baseUrl)/movie/\(movieId)/similar"
+        case let .getMovieVideoInformation(movieId, _):
+            return "\(Router.baseUrl)/movie/\(movieId)/videos"
+        case let .getMovieDetails(movieId, _):
+            return "\(Router.baseUrl)/movie/\(movieId)"
+        }
+    }
+    
+    var method: HTTPMethod {
+        switch self {
+        case .getImagesConfiguration,
+             .getNowPlayingMovies,
+             .getTopRatedMovies,
+             .getPopularMovies,
+             .getSimilarMovies,
+             .getMovieVideoInformation,
+             .getMovieDetails:
+            return HTTPMethod.get
+        }
+    }
+    
+    var parameters: [String: Any] {
+        switch self {
+        case let .getImagesConfiguration(apiKey):
+            return [
+                "apiKey" : apiKey
+            ]
+        case let .getNowPlayingMovies(pageOrdinal, apiKey):
+            return [
+                "apiKey" : apiKey,
+                "page" : pageOrdinal,
+                "sort_by" : "popularity.des"
+            ]
+        case let .getTopRatedMovies(pageOrdinal, apiKey):
+            return [
+                "apiKey" : apiKey,
+                "page" : pageOrdinal,
+                "sort_by" : "popularity.des"
+            ]
+        case let .getPopularMovies(pageOrdinal, apiKey):
+            return [
+                "apiKey" : apiKey,
+                "page" : pageOrdinal,
+                "sort_by" : "popularity.des"
+            ]
+        case let .getSimilarMovies(_, apiKey):
+            return [
+                "apiKey" : apiKey
+            ]
+        case let .getMovieVideoInformation(_, apiKey):
+            return [
+                "apiKey" : apiKey
+            ]
+        case let .getMovieDetails(_, apiKey):
+            return [
+                "apiKey" : apiKey
+            ]
+        }
     }
 }

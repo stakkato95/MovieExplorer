@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Alamofire
+import RxAlamofire
 import RxSwift
 
 class MovieClient {
@@ -21,9 +21,5 @@ class MovieClient {
         self.youTubeBaseUrl = youTubeBaseUrl
     }
     
-    func getImagesConfiguration() {
-        Alamofire.request(Router.getImagesConfiguration(apiKey: apiKey)).responseJSON { response in
-//            response.result
-        }
-    }
+    
 }

@@ -15,8 +15,10 @@
 		996668E61EA2533700C5EE10 /* ImagesConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996668E51EA2533700C5EE10 /* ImagesConfiguration.swift */; };
 		996668E81EA2540C00C5EE10 /* MovieResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996668E71EA2540C00C5EE10 /* MovieResponse.swift */; };
 		996668EA1EA2549D00C5EE10 /* VideoInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996668E91EA2549D00C5EE10 /* VideoInformation.swift */; };
-		996668ED1EA2557500C5EE10 /* ImageConfigurationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996668EC1EA2557500C5EE10 /* ImageConfigurationResponse.swift */; };
+		996668ED1EA2557500C5EE10 /* ImagesConfigurationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996668EC1EA2557500C5EE10 /* ImagesConfigurationResponse.swift */; };
 		996668EF1EA255EB00C5EE10 /* VideoInformationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996668EE1EA255EB00C5EE10 /* VideoInformationResponse.swift */; };
+		996668F11EA2571C00C5EE10 /* MovieApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996668F01EA2571C00C5EE10 /* MovieApi.swift */; };
+		996668F31EA2ABD200C5EE10 /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996668F21EA2ABD200C5EE10 /* RequestError.swift */; };
 		99D09D151E9A2D0900F6C769 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D09D141E9A2D0900F6C769 /* AppDelegate.swift */; };
 		99D09D171E9A2D0900F6C769 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D09D161E9A2D0900F6C769 /* ViewController.swift */; };
 		99D09D1A1E9A2D0900F6C769 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99D09D181E9A2D0900F6C769 /* Main.storyboard */; };
@@ -60,8 +62,10 @@
 		996668E51EA2533700C5EE10 /* ImagesConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImagesConfiguration.swift; path = Api/Model/ImagesConfiguration.swift; sourceTree = "<group>"; };
 		996668E71EA2540C00C5EE10 /* MovieResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MovieResponse.swift; path = Api/Response/MovieResponse.swift; sourceTree = "<group>"; };
 		996668E91EA2549D00C5EE10 /* VideoInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoInformation.swift; path = Api/Model/VideoInformation.swift; sourceTree = "<group>"; };
-		996668EC1EA2557500C5EE10 /* ImageConfigurationResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageConfigurationResponse.swift; path = Api/Response/ImageConfigurationResponse.swift; sourceTree = "<group>"; };
+		996668EC1EA2557500C5EE10 /* ImagesConfigurationResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImagesConfigurationResponse.swift; path = Api/Response/ImagesConfigurationResponse.swift; sourceTree = "<group>"; };
 		996668EE1EA255EB00C5EE10 /* VideoInformationResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoInformationResponse.swift; sourceTree = "<group>"; };
+		996668F01EA2571C00C5EE10 /* MovieApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MovieApi.swift; path = Api/MovieApi.swift; sourceTree = "<group>"; };
+		996668F21EA2ABD200C5EE10 /* RequestError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestError.swift; sourceTree = "<group>"; };
 		99D09D111E9A2D0900F6C769 /* MovieExplorer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieExplorer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99D09D141E9A2D0900F6C769 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		99D09D161E9A2D0900F6C769 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -112,10 +116,12 @@
 		9913C21B1EA16C020024D29C /* Api */ = {
 			isa = PBXGroup;
 			children = (
+				996668F01EA2571C00C5EE10 /* MovieApi.swift */,
 				9913C21C1EA16C400024D29C /* MovieClient.swift */,
 				99ED170A1EA16F7200057A1D /* Router.swift */,
 				996668E41EA2531600C5EE10 /* Model */,
 				996668EB1EA2555200C5EE10 /* Response */,
+				996668F21EA2ABD200C5EE10 /* RequestError.swift */,
 			);
 			name = Api;
 			sourceTree = "<group>";
@@ -134,7 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				996668E71EA2540C00C5EE10 /* MovieResponse.swift */,
-				996668EC1EA2557500C5EE10 /* ImageConfigurationResponse.swift */,
+				996668EC1EA2557500C5EE10 /* ImagesConfigurationResponse.swift */,
 				996668EE1EA255EB00C5EE10 /* VideoInformationResponse.swift */,
 			);
 			name = Response;
@@ -511,6 +517,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				996668F31EA2ABD200C5EE10 /* RequestError.swift in Sources */,
 				99D09D171E9A2D0900F6C769 /* ViewController.swift in Sources */,
 				99D09D151E9A2D0900F6C769 /* AppDelegate.swift in Sources */,
 				996668E61EA2533700C5EE10 /* ImagesConfiguration.swift in Sources */,
@@ -518,10 +525,11 @@
 				9913C21D1EA16C400024D29C /* MovieClient.swift in Sources */,
 				99D09D1D1E9A2D0900F6C769 /* MovieExplorer.xcdatamodeld in Sources */,
 				996668EA1EA2549D00C5EE10 /* VideoInformation.swift in Sources */,
-				996668ED1EA2557500C5EE10 /* ImageConfigurationResponse.swift in Sources */,
+				996668ED1EA2557500C5EE10 /* ImagesConfigurationResponse.swift in Sources */,
 				996668E81EA2540C00C5EE10 /* MovieResponse.swift in Sources */,
 				996668EF1EA255EB00C5EE10 /* VideoInformationResponse.swift in Sources */,
 				99ED170B1EA16F7200057A1D /* Router.swift in Sources */,
+				996668F11EA2571C00C5EE10 /* MovieApi.swift in Sources */,
 				9914B4EB1E9A84DC0007B113 /* StaticTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
