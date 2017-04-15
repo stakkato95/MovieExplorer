@@ -40,6 +40,5 @@ class Movie: Mappable {
     }
     
     func mapping(map: Map) {
-        
     }
 }
