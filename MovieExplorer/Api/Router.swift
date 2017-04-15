@@ -19,7 +19,7 @@ enum Router: URLRequestConvertible {
     
     case getPopularMovies(pageOrdinal: Int, apiKey: String)
     
-    case getSimilarMovies(pageOrdinal: Int, apiKey: String)
+    case getSimilarMovies(movieId: Int, apiKey: String)
     
     case getMovieVideoInformation(movieId: Int, apiKey: String)
     
@@ -31,9 +31,47 @@ enum Router: URLRequestConvertible {
         let result: (method: HTTPMethod, path: String, parameters: Parameters)? = {
             switch self {
             case let .getImagesConfiguration(apiKey) :
-                return (method: HTTPMethod.get, "/configuration", ["apiKey" : apiKey ])
-            default:
-                return nil
+                return (
+                    HTTPMethod.get,
+                    "/configuration",
+                    ["apiKey" : apiKey ]
+                )
+            case let .getNowPlayingMovies(pageOrdinal, apiKey):
+                return (
+                    HTTPMethod.get,
+                    "/movie/now_playing",
+                    [ "apiKey" : apiKey, "page" : pageOrdinal, "sort_by" : "popularity.des" ]
+                )
+            case let .getTopRatedMovies(pageOrdinal, apiKey):
+                return (
+                    HTTPMethod.get,
+                    "/movie/top_rated",
+                    [ "apiKey" : apiKey, "page" : pageOrdinal, "sort_by" : "popularity.des" ]
+                )
+            case let .getPopularMovies(pageOrdinal, apiKey):
+                return (
+                    HTTPMethod.get,
+                    "/movie/popular",
+                    [ "apiKey" : apiKey, "page" : pageOrdinal, "sort_by" : "popularity.des" ]
+                )
+            case let .getSimilarMovies(movieId, apiKey):
+                return (
+                    HTTPMethod.get,
+                    "/movie/\(movieId)/similar",
+                    [ "apiKey" : apiKey ]
+                )
+            case let .getMovieVideoInformation(movieId, apiKey):
+                return (
+                    HTTPMethod.get,
+                    "/movie/\(movieId)/videos",
+                    [ "apiKey" : apiKey ]
+                )
+            case let .getMovieDetails(movieId, apiKey):
+                return (
+                    HTTPMethod.get,
+                    "/movie/\(movieId)",
+                    [ "apiKey" : apiKey ]
+                )
             }
         }()
         
