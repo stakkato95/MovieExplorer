@@ -25,7 +25,7 @@ enum Router {
     
     case getMovieDetails(movieId: Int, apiKey: String)
     
-    static let baseUrl = "http://api.themoviedb.org/3"
+    static let baseUrl = "https://api.themoviedb.org/3"
     
     var path: String {
         switch self {

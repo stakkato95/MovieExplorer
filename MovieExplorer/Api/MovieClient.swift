@@ -16,10 +16,17 @@ class MovieClient {
     
     let youTubeBaseUrl: String
     
-    init(apiKey: String, youTubeBaseUrl: String) {
+    let api: MovieApi
+    
+    init(api: MovieApi, apiKey: String, youTubeBaseUrl: String) {
         self.apiKey = apiKey
         self.youTubeBaseUrl = youTubeBaseUrl
+        self.api = api
     }
     
-    
+    func getImagesConfiguration() throws -> Observable<ImagesConfiguration?>?  {
+        return try api.getImagesConfiguration(apiKey: apiKey).map { event in
+            return ImagesConfiguration(JSONString: String())
+        }
+    }
 }
