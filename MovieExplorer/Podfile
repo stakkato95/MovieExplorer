@@ -5,7 +5,10 @@ target 'MovieExplorer' do
   use_frameworks!
 
   # Pods for MovieExplorer
-  pod 'Alamofire', '~> 4.4'
+  pod 'RxAlamofire'
+  pod 'ObjectMapper', '~> 2.2'
+  pod 'RxSwift',    '~> 3.0'
+  pod 'RxCocoa',    '~> 3.0'
 
   target 'MovieExplorerTests' do
     inherit! :search_paths
