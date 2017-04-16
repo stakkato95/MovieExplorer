@@ -20,19 +20,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         let client = MovieClient(api: MovieApi(), apiKey: "ab41356b33d100ec61e6c098ecc92140", youTubeBaseUrl: "")
         
-        do {
-            let a = try client.getImagesConfiguration()?.subscribe(onNext: { imagesConfiguration in
-                print("done!!!")
+        
+        MoviesInteractor(client: client)
+            .loadData()?
+            .observeOn(MainScheduler.instance)
+            .subscribeOn(CurrentThreadScheduler.instance)
+            .subscribe(onNext: { result in
+                print(result.nowPlaying?.count as Any)
             }, onError: { error in
-                print(error.localizedDescription)
+                print("")
+            }, onCompleted: {
+                print("completed")
             })
-            
-            print(type(of: a))
-        } catch {
-            
-        }
-        
-        
         return true
     }
 }

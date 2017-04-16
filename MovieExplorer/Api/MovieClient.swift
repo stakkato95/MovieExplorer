@@ -24,9 +24,19 @@ class MovieClient {
         self.api = api
     }
     
-    func getImagesConfiguration() throws -> Observable<ImagesConfiguration?>?  {
-        return try api.getImagesConfiguration(apiKey: apiKey).map { event in
-            return ImagesConfiguration(JSONString: String())
-        }
+    func getImagesConfiguration() -> Observable<ImagesConfiguration?> {
+        return api.getImagesConfiguration(apiKey: apiKey).map { event in event?.imagesConfiguration }
+    }
+    
+    func getPopularMovies(pageOrdinal: Int) -> Observable<[Movie]?> {
+        return api.getPopularMovies(apiKey: apiKey, pageOrdinal: pageOrdinal).map { event in event?.movies }
+    }
+    
+    func getTopRatedMovies(pageOrdinal: Int) -> Observable<[Movie]?> {
+        return api.getTopRatedMovies(apiKey: apiKey, pageOrdinal: pageOrdinal).map { event in event?.movies }
+    }
+    
+    func getNowPlayingMovies(pageOrdinal: Int) -> Observable<[Movie]?> {
+        return api.getNowPlayingMovies(apiKey: apiKey, pageOrdinal: pageOrdinal).map { event in event?.movies }
     }
 }

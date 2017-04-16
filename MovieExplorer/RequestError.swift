@@ -8,6 +8,8 @@
 
 import Foundation
 
-enum RequestError: Error {
+enum ApiError: Error {
+    
     case requestFailed
+    
 }

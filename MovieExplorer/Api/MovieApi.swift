@@ -14,29 +14,33 @@ import ObjectMapper
 
 class MovieApi {
     
-    func getImagesConfiguration(apiKey: String) throws -> Observable<ImagesConfigurationResponse?> {
+    func getImagesConfiguration(apiKey: String) -> Observable<ImagesConfigurationResponse?> {
         let requestParameters = Router.getImagesConfiguration(apiKey: apiKey)
-        
-        guard let observable = try performRequest(requestParameters, typeOfResponse: ImagesConfigurationResponse.self) else {
-            throw RequestError.requestFailed
-        }
-        
-        return observable
+        return performRequest(requestParameters, typeOfResponse: ImagesConfigurationResponse.self)
     }
     
-    func getMovieDetails(apiKey: String, pageOrdinal: Int) throws -> Observable<Movie?> {
+    func getPopularMovies(apiKey: String, pageOrdinal: Int) -> Observable<MoviesResponse?> {
         let requestParameters = Router.getPopularMovies(pageOrdinal: pageOrdinal, apiKey: apiKey)
-        
-        guard let observable = try performRequest(requestParameters, typeOfResponse: Movie.self) else {
-            throw RequestError.requestFailed
-        }
-        
-        return observable
+        return performRequest(requestParameters, typeOfResponse: MoviesResponse.self)
     }
     
-    func performRequest<TMappable: Mappable>(_ request: Router, typeOfResponse: TMappable.Type) throws -> Observable<TMappable?>? {
-        return RxAlamofire.requestJSON(request.method, try request.path.asURL(), parameters: request.parameters).map { event in
-            return TMappable(JSONString: String())
+    func getTopRatedMovies(apiKey: String, pageOrdinal: Int) -> Observable<MoviesResponse?> {
+        let requestParameters = Router.getTopRatedMovies(pageOrdinal: pageOrdinal, apiKey: apiKey)
+        return performRequest(requestParameters, typeOfResponse: MoviesResponse.self)
+    }
+    
+    func getNowPlayingMovies(apiKey: String, pageOrdinal: Int) -> Observable<MoviesResponse?> {
+        let requestParameters = Router.getNowPlayingMovies(pageOrdinal: pageOrdinal, apiKey: apiKey)
+        return performRequest(requestParameters, typeOfResponse: MoviesResponse.self)
+    }
+    
+    func performRequest<TMappable: Mappable>(_ request: Router, typeOfResponse: TMappable.Type) -> Observable<TMappable?> {
+        return RxAlamofire.requestString(request.method, try! request.path.asURL(), parameters: request.parameters).map { event in
+            guard event.0.statusCode == 200 else {
+                throw ApiError.requestFailed
+            }
+            
+            return TMappable(JSONString: event.1)
         }
     }
 }

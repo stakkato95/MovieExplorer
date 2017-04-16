@@ -59,42 +59,41 @@ enum Router {
         }
     }
     
-    var parameters: [String: Any] {
+    var parameters: [String: String] {
         switch self {
         case let .getImagesConfiguration(apiKey):
-            return [
-                "apiKey" : apiKey
-            ]
+            return getApiKeyParameters(apiKey)
+            
         case let .getNowPlayingMovies(pageOrdinal, apiKey):
-            return [
-                "apiKey" : apiKey,
-                "page" : pageOrdinal,
-                "sort_by" : "popularity.des"
-            ]
+            var parameters = getApiKeyParameters(apiKey)
+            parameters["page"] = String(pageOrdinal)
+            parameters["sort_by"] = "popularity.des"
+            return parameters
+            
         case let .getTopRatedMovies(pageOrdinal, apiKey):
-            return [
-                "apiKey" : apiKey,
-                "page" : pageOrdinal,
-                "sort_by" : "popularity.des"
-            ]
+            var parameters = getApiKeyParameters(apiKey)
+            parameters["page"] = String(pageOrdinal)
+            parameters["sort_by"] = "popularity.des"
+            return parameters
+            
         case let .getPopularMovies(pageOrdinal, apiKey):
-            return [
-                "apiKey" : apiKey,
-                "page" : pageOrdinal,
-                "sort_by" : "popularity.des"
-            ]
+            var parameters = getApiKeyParameters(apiKey)
+            parameters["page"] = String(pageOrdinal)
+            parameters["sort_by"] = "popularity.des"
+            return parameters
+            
         case let .getSimilarMovies(_, apiKey):
-            return [
-                "apiKey" : apiKey
-            ]
+            return getApiKeyParameters(apiKey)
+            
         case let .getMovieVideoInformation(_, apiKey):
-            return [
-                "apiKey" : apiKey
-            ]
+            return getApiKeyParameters(apiKey)
+            
         case let .getMovieDetails(_, apiKey):
-            return [
-                "apiKey" : apiKey
-            ]
+            return getApiKeyParameters(apiKey)
         }
+    }
+    
+    func getApiKeyParameters(_ apiKey: String) -> [String: String] {
+        return [ "api_key" : apiKey ]
     }
 }
