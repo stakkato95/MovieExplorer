@@ -10,15 +10,15 @@ import Foundation
 import RxAlamofire
 import RxSwift
 
-class MovieClient {
+class MovieClient: IMovieClient {
     
     let apiKey: String
     
     let youTubeBaseUrl: String
     
-    let api: MovieApi
+    let api: IMovieApi
     
-    init(api: MovieApi, apiKey: String, youTubeBaseUrl: String) {
+    init(api: IMovieApi, apiKey: String, youTubeBaseUrl: String) {
         self.apiKey = apiKey
         self.youTubeBaseUrl = youTubeBaseUrl
         self.api = api

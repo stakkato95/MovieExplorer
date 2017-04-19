@@ -1,5 +1,5 @@
 //
-//  IPresenter.swift
+//  BaseInteractor.swift
 //  MovieExplorer
 //
 //  Created by Artsiom Kaliaha on 4/16/17.
@@ -7,8 +7,11 @@
 //
 
 import Foundation
+import RxSwift
 
-protocol BasePresenterDelegate {
+protocol IUseCase {
     
-    func loadData()
+    associatedtype TResult
+    
+    func loadData() -> Observable<TResult>?
 }

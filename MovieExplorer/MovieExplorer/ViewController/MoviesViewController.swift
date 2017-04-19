@@ -9,15 +9,15 @@
 import Foundation
 import RxSwift
 
-class MoviesViewController: BaseViewController<MoviesPresenter>, MoviesViewControllerDelegate {
-    
-    func showError(errorMessage: String) {
-    }
-    
-    func getPresenter() -> Any {
-        return MoviesPresenter(viewController: self)
-    }
-    
-    func showMovies(movies: [Movie]) {
-    }
-}
+//class MoviesViewController: BaseViewController<MoviesPresenter>, MoviesViewControllerDelegate {
+//    
+//    func showError(errorMessage: String) {
+//    }
+//    
+//    func getPresenter() -> Any {
+////        return MoviesPresenter(viewController: self)
+//    }
+//    
+//    func showMovies(movies: [Movie]) {
+//    }
+//}

@@ -12,7 +12,7 @@ import Alamofire
 import RxSwift
 import ObjectMapper
 
-class MovieApi {
+class MovieApi: IMovieApi {
     
     func getImagesConfiguration(apiKey: String) -> Observable<ImagesConfigurationResponse?> {
         let requestParameters = Router.getImagesConfiguration(apiKey: apiKey)
@@ -34,7 +34,7 @@ class MovieApi {
         return performRequest(requestParameters, typeOfResponse: MoviesResponse.self)
     }
     
-    func performRequest<TMappable: Mappable>(_ request: Router, typeOfResponse: TMappable.Type) -> Observable<TMappable?> {
+    private func performRequest<TMappable: Mappable>(_ request: Router, typeOfResponse: TMappable.Type) -> Observable<TMappable?> {
         return RxAlamofire.requestString(request.method, try! request.path.asURL(), parameters: request.parameters).map { event in
             guard event.0.statusCode == 200 else {
                 throw ApiError.requestFailed

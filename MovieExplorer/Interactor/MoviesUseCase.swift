@@ -9,7 +9,9 @@
 import Foundation
 import RxSwift
 
-class MoviesInteractor: BaseInteractor {
+class MoviesUseCase: IMoviesUaseCase {
+    
+    typealias TResult = (nowPlaying: [Movie]?, topRated: [Movie]?, popular: [Movie]?)
     
     let noPagesLoaded = 1
     
@@ -25,8 +27,6 @@ class MoviesInteractor: BaseInteractor {
         self.lastLoadedTopRatedPage = noPagesLoaded
         self.lastLoadedNowPlayingPage = noPagesLoaded
     }
-    
-    typealias TResult = (nowPlaying: [Movie]?, topRated: [Movie]?, popular: [Movie]?)
     
     func loadData() -> Observable<(nowPlaying: [Movie]?, topRated: [Movie]?, popular: [Movie]?)>? {
         let observables = [
@@ -52,8 +52,4 @@ class MoviesInteractor: BaseInteractor {
             return client.getNowPlayingMovies(pageOrdinal: lastLoadedPopularPage)
         }
     }
-}
-
-enum MovieType {
-    case nowPlaying, topRated, popular
 }

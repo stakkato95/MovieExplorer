@@ -9,16 +9,16 @@
 import UIKit
 import Alamofire
 
-class BaseViewController<TPresenter: BasePresenterDelegate>: UIViewController {
-    
-    var delegate: BaseViewControllerDelegate?
-    
-    var presenter: TPresenter?
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        presenter = delegate?.getPresenter() as? TPresenter
-        presenter?.loadData()
-    }
-}
+//class BaseViewController<TPresenter: BasePresenterDelegate>: UIViewController {
+//    
+//    var delegate: BaseViewControllerDelegate?
+//    
+//    var presenter: TPresenter?
+//    
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//        
+//        presenter = delegate?.getPresenter() as? TPresenter
+//        presenter?.loadData()
+//    }
+//}

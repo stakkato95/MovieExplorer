@@ -9,16 +9,19 @@
 import Foundation
 import RxSwift
 
-class MoviesPresenter: BasePresenterDelegate {
+class MoviesPresenter<UseCase: IMoviesUaseCase>: IMoviePresenter {
     
-    var basePresenter: BasePresenter<MoviesViewController>?
+    let moviesUseCase: UseCase
     
-    convenience init(viewController: MoviesViewControllerDelegate) {
-        self.init(viewController: viewController)
-        basePresenter?.delegate = self
+    init(moviesUseCase: UseCase) {
+        self.moviesUseCase = moviesUseCase
     }
     
     func loadData() {
-        print("loaded in movies")
+//        moviesUseCase.loadData()
+    }
+    
+    func navigateToDetail() {
+        
     }
 }
