@@ -19,8 +19,20 @@ class MoviesPresenter<View: IMoviesView>: IMoviePresenter {
         self.moviesUseCase = moviesUseCase
     }
     
+    func setView(view: Any?) {
+        self.view = (view as! View)
+    }
+    
     func loadData() {
-//        moviesUseCase.loadData()
+        moviesUseCase
+            .loadData()?
+            .subscribeOn(ConcurrentDispatchQueueScheduler.init(qos: DispatchQoS.utility)).observeOn(MainScheduler.instance).subscribe(onNext: { movies in
+                if let nowPlayingMovies = movies.nowPlaying {
+                    self.view?.showMovies(movies: nowPlayingMovies)
+                }
+            }, onError: { error in
+                self.view?.showError(errorMessage: error.localizedDescription)
+            });
     }
     
     func navigateToDetail() {

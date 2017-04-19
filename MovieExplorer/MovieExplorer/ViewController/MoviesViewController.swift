@@ -16,7 +16,7 @@ class MoviesViewController: UIViewController, IMoviesView {
         get {
             if p == nil {
                 p = DependencyContainer.container.resolve(IMoviePresenter.self)!
-                p.
+                p.setView(view: self)
             }
             return p
         }
@@ -24,13 +24,15 @@ class MoviesViewController: UIViewController, IMoviesView {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter.loadData()
     }
     
     
     func showError(errorMessage: String) {
-        
+        print("error shown")
     }
     
     func showMovies(movies: [Movie]) {
+        print("movies shown")
     }
 }

@@ -11,7 +11,5 @@ import RxSwift
 
 protocol IMoviesView: IView {
     
-    typealias TPresenter = IMoviePresenter
-    
     func showMovies(movies: [Movie])
 }
