@@ -9,7 +9,9 @@
 import Foundation
 import RxSwift
 
-protocol MoviesViewControllerDelegate: BaseViewControllerDelegate {
+protocol IMoviesView: IView {
+    
+    typealias TPresenter = IMoviePresenter
     
     func showMovies(movies: [Movie])
 }

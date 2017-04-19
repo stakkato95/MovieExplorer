@@ -9,7 +9,9 @@
 import Foundation
 import RxSwift
 
-class MoviesPresenter: IMoviePresenter {
+class MoviesPresenter<View: IMoviesView>: IMoviePresenter {
+    
+    var view: View?
     
     let moviesUseCase: IMoviesUaseCase
     

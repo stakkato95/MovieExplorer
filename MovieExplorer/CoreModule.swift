@@ -11,15 +11,13 @@ import Swinject
 
 class CoreModule {
     
-    static func initModule(container: Container) -> Container {
+    static func initModule(container: Container) {
         container.register(IMoviesUaseCase.self) { resolver in
             return MoviesUseCase(client: resolver.resolve(IMovieClient.self)!)
         }
         
         container.register(IMoviePresenter.self) { resolver in
-            return MoviesPresenter(moviesUseCase: resolver.resolve(IMoviesUaseCase.self)!)
+            return MoviesPresenter<MoviesViewController>(moviesUseCase: resolver.resolve(IMoviesUaseCase.self)!)
         }
-        
-        return container
     }
 }

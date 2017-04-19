@@ -8,9 +8,11 @@
 
 import Foundation
 
-protocol BaseViewControllerDelegate {
+protocol IView {
+    
+    associatedtype TPresenter
     
     func showError(errorMessage: String)
     
-    func getPresenter() -> Any
+    var presenter: TPresenter { get }
 }
