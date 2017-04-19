@@ -18,7 +18,7 @@ class MovieClient: IMovieClient {
     
     let api: IMovieApi
     
-    init(api: IMovieApi, apiKey: String, youTubeBaseUrl: String) {
+    init(withApi api: IMovieApi, withApiKey apiKey: String, withYouTubeUrl youTubeBaseUrl: String) {
         self.apiKey = apiKey
         self.youTubeBaseUrl = youTubeBaseUrl
         self.api = api

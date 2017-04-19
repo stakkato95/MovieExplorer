@@ -11,17 +11,15 @@ import RxSwift
 
 class MoviesUseCase: IMoviesUaseCase {
     
-    typealias TResult = (nowPlaying: [Movie]?, topRated: [Movie]?, popular: [Movie]?)
-    
     let noPagesLoaded = 1
     
-    let client: MovieClient
+    let client: IMovieClient
     
     var lastLoadedPopularPage: Int
     var lastLoadedTopRatedPage: Int
     var lastLoadedNowPlayingPage: Int
     
-    init(client: MovieClient) {
+    init(client: IMovieClient) {
         self.client = client
         self.lastLoadedPopularPage = noPagesLoaded
         self.lastLoadedTopRatedPage = noPagesLoaded

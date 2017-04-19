@@ -9,11 +9,11 @@
 import Foundation
 import RxSwift
 
-protocol IMoviesUaseCase: IUseCase {
-    
-    typealias TResult = (nowPlaying: [Movie]?, topRated: [Movie]?, popular: [Movie]?)
+protocol IMoviesUaseCase {
     
     func loadNexPortion(_ movieType: MovieType) -> Observable<[Movie]?>?
+    
+    func loadData() -> Observable<(nowPlaying: [Movie]?, topRated: [Movie]?, popular: [Movie]?)>?
 }
 
 enum MovieType {

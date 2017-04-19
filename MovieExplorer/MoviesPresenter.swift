@@ -9,11 +9,11 @@
 import Foundation
 import RxSwift
 
-class MoviesPresenter<UseCase: IMoviesUaseCase>: IMoviePresenter {
+class MoviesPresenter: IMoviePresenter {
     
-    let moviesUseCase: UseCase
+    let moviesUseCase: IMoviesUaseCase
     
-    init(moviesUseCase: UseCase) {
+    init(moviesUseCase: IMoviesUaseCase) {
         self.moviesUseCase = moviesUseCase
     }
     
