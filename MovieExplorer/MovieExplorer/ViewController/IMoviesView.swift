@@ -10,5 +10,5 @@ import Foundation
 
 protocol IMoviesView: IView {
     
-    func showMovies(movies: [Movie])
+    func showMovies(moviesCollection: (nowPlaying: [Movie]?, topRated: [Movie]?, popular: [Movie]?))
 }

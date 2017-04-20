@@ -9,11 +9,17 @@
 import Foundation
 import UIKit
 
-class MovieCell: UICollectionViewCell {
+class MovieCell: UICollectionViewCell, ICell {
     
-    let cellId = "cell"
+    typealias TData = Movie
     
-    func setData(movie: Movie) {
-        
+    static let cellId = "cell"
+    
+    static let nibName = "MovieCellView"
+    
+    @IBOutlet var image: UIImageView!
+    
+    func setData(data: TData) {
+//        image.loadImage
     }
 }

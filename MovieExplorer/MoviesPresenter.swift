@@ -27,9 +27,7 @@ class MoviesPresenter<View: IMoviesView>: IMoviePresenter {
         moviesUseCase
             .loadData()?
             .subscribeOn(ConcurrentDispatchQueueScheduler.init(qos: DispatchQoS.utility)).observeOn(MainScheduler.instance).subscribe(onNext: { movies in
-                if let nowPlayingMovies = movies.nowPlaying {
-                    self.view?.showMovies(movies: nowPlayingMovies)
-                }
+                self.view?.showMovies(moviesCollection: movies)
             }, onError: { error in
                 self.view?.showError(errorMessage: error.localizedDescription)
             });
