@@ -21,6 +21,7 @@
 		998FFCE61EA7969A0006727D /* CoreModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998FFCE51EA7969A0006727D /* CoreModule.swift */; };
 		99A732831EB4AD9600B1E29F /* IImageUrlComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A732821EB4AD9600B1E29F /* IImageUrlComposer.swift */; };
 		99A732851EB4ADD900B1E29F /* ImageUrlComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A732841EB4ADD900B1E29F /* ImageUrlComposer.swift */; };
+		99A732871EB4FE4100B1E29F /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A732861EB4FE4100B1E29F /* UIViewExtension.swift */; };
 		99ABB5211EA95CBD00F58D22 /* ICell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ABB5201EA95CBD00F58D22 /* ICell.swift */; };
 		99B58DC01EA94B4600EA732B /* MovieCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99B58DBF1EA94B4600EA732B /* MovieCellView.xib */; };
 		99B58DC21EA94CA600EA732B /* CollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B58DC11EA94CA600EA732B /* CollectionViewDelegate.swift */; };
@@ -85,6 +86,7 @@
 		998FFCE51EA7969A0006727D /* CoreModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreModule.swift; sourceTree = "<group>"; };
 		99A732821EB4AD9600B1E29F /* IImageUrlComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IImageUrlComposer.swift; path = Api/IImageUrlComposer.swift; sourceTree = "<group>"; };
 		99A732841EB4ADD900B1E29F /* ImageUrlComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageUrlComposer.swift; path = Api/ImageUrlComposer.swift; sourceTree = "<group>"; };
+		99A732861EB4FE4100B1E29F /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIViewExtension.swift; path = Extensions/UIViewExtension.swift; sourceTree = "<group>"; };
 		99ABB5201EA95CBD00F58D22 /* ICell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ICell.swift; path = ViewController/Cell/ICell.swift; sourceTree = "<group>"; };
 		99B58DBF1EA94B4600EA732B /* MovieCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MovieCellView.xib; path = ViewController/Cell/MovieCellView.xib; sourceTree = "<group>"; };
 		99B58DC11EA94CA600EA732B /* CollectionViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionViewDelegate.swift; path = ViewController/CollectionViewDelegate.swift; sourceTree = "<group>"; };
@@ -198,9 +200,18 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		99A732881EB4FE4A00B1E29F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				99A732861EB4FE4100B1E29F /* UIViewExtension.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		99D09D081E9A2D0900F6C769 = {
 			isa = PBXGroup;
 			children = (
+				99A732881EB4FE4A00B1E29F /* Extensions */,
 				99E75BAE1EA387330026C712 /* Presenter */,
 				99E75BA91EA36FF40026C712 /* Interactor */,
 				9913C21B1EA16C020024D29C /* Api */,
@@ -621,6 +632,7 @@
 				99D1E4EB1EA78B0B00E8BF25 /* IMovieApi.swift in Sources */,
 				998FFCE61EA7969A0006727D /* CoreModule.swift in Sources */,
 				99E75BB01EA387630026C712 /* IPresenter.swift in Sources */,
+				99A732871EB4FE4100B1E29F /* UIViewExtension.swift in Sources */,
 				99D09D1D1E9A2D0900F6C769 /* MovieExplorer.xcdatamodeld in Sources */,
 				99A732831EB4AD9600B1E29F /* IImageUrlComposer.swift in Sources */,
 				996668EA1EA2549D00C5EE10 /* VideoInformation.swift in Sources */,

@@ -38,6 +38,14 @@ class MoviesViewController: UIViewController, IMoviesView {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        nowPlayingCollection.addShadow()
+        topRatedCollection.addShadow()
+        popularCollection.addShadow()
+        
+        nowPlayingCollection.contentInsetBy(top: 10, left: 12, bottom: 10, right: 12)
+        topRatedCollection.contentInsetBy(top: 10, left: 12, bottom: 10, right: 12)
+        popularCollection.contentInsetBy(top: 10, left: 12, bottom: 10, right: 12)
+        
         let nib = UINib(nibName: MovieCell.nibName, bundle: nil)
         nowPlayingCollection.register(nib, forCellWithReuseIdentifier: MovieCell.cellId)
         topRatedCollection.register(nib, forCellWithReuseIdentifier: MovieCell.cellId)

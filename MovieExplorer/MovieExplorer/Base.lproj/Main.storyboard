@@ -42,13 +42,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XvS-Jh-hPI">
-                                        <rect key="frame" x="8" y="0.0" width="359" height="667"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                         <subviews>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="rKj-XE-mZY">
-                                                <rect key="frame" x="0.0" y="8" width="359" height="162.5"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <rect key="frame" x="0.0" y="8" width="375" height="200"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" secondItem="rKj-XE-mZY" secondAttribute="height" multiplier="375:170" id="Eqv-vE-Wwx"/>
+                                                    <constraint firstAttribute="width" secondItem="rKj-XE-mZY" secondAttribute="height" multiplier="375:200" id="Eqv-vE-Wwx"/>
                                                 </constraints>
                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="C85-OW-xsv">
                                                     <size key="itemSize" width="120" height="170"/>
@@ -59,10 +59,10 @@
                                                 <cells/>
                                             </collectionView>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="8ga-jT-jan">
-                                                <rect key="frame" x="0.0" y="178.5" width="359" height="163"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <rect key="frame" x="0.0" y="215.5" width="375" height="200"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" secondItem="8ga-jT-jan" secondAttribute="height" multiplier="375:170" id="09u-wA-UyP"/>
+                                                    <constraint firstAttribute="width" secondItem="8ga-jT-jan" secondAttribute="height" multiplier="375:200" id="09u-wA-UyP"/>
                                                 </constraints>
                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="1mh-dX-Ded">
                                                     <size key="itemSize" width="120" height="170"/>
@@ -73,10 +73,10 @@
                                                 <cells/>
                                             </collectionView>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Gwo-JC-8Mz">
-                                                <rect key="frame" x="0.0" y="349.5" width="359" height="162.5"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <rect key="frame" x="0.0" y="423.5" width="375" height="200"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" secondItem="Gwo-JC-8Mz" secondAttribute="height" multiplier="375:170" id="eXl-oW-apB"/>
+                                                    <constraint firstAttribute="width" secondItem="Gwo-JC-8Mz" secondAttribute="height" multiplier="375:200" id="eXl-oW-apB"/>
                                                 </constraints>
                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="1Ns-7o-RRV">
                                                     <size key="itemSize" width="120" height="170"/>
@@ -87,7 +87,6 @@
                                                 <cells/>
                                             </collectionView>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="8ga-jT-jan" secondAttribute="trailing" id="8Od-h4-rQA"/>
                                             <constraint firstItem="8ga-jT-jan" firstAttribute="leading" secondItem="XvS-Jh-hPI" secondAttribute="leading" id="DI4-c9-NDd"/>
@@ -109,13 +108,13 @@
                                     <constraint firstAttribute="bottom" secondItem="XvS-Jh-hPI" secondAttribute="bottom" id="2hA-Zt-OLO"/>
                                     <constraint firstItem="XvS-Jh-hPI" firstAttribute="centerX" secondItem="EN3-aW-cMh" secondAttribute="centerX" id="8pP-5h-tsb"/>
                                     <constraint firstItem="XvS-Jh-hPI" firstAttribute="centerY" secondItem="EN3-aW-cMh" secondAttribute="centerY" id="BaC-ko-va1"/>
-                                    <constraint firstItem="XvS-Jh-hPI" firstAttribute="leading" secondItem="EN3-aW-cMh" secondAttribute="leading" constant="8" id="anG-c9-77B"/>
-                                    <constraint firstAttribute="trailing" secondItem="XvS-Jh-hPI" secondAttribute="trailing" constant="8" id="czp-wX-Dfa"/>
+                                    <constraint firstItem="XvS-Jh-hPI" firstAttribute="leading" secondItem="EN3-aW-cMh" secondAttribute="leading" id="anG-c9-77B"/>
+                                    <constraint firstAttribute="trailing" secondItem="XvS-Jh-hPI" secondAttribute="trailing" id="czp-wX-Dfa"/>
                                     <constraint firstItem="XvS-Jh-hPI" firstAttribute="top" secondItem="EN3-aW-cMh" secondAttribute="top" id="m5T-DD-gV3"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.38823529411764707" green="0.38823529411764707" blue="0.38823529411764707" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="EN3-aW-cMh" firstAttribute="centerX" secondItem="8cY-cU-XrI" secondAttribute="centerX" id="Hnp-8f-a1q"/>
                             <constraint firstItem="EN3-aW-cMh" firstAttribute="centerX" secondItem="8cY-cU-XrI" secondAttribute="centerX" id="SlG-26-IgC"/>

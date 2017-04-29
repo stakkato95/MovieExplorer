@@ -22,6 +22,8 @@ class MovieClient: IMovieClient {
     
     var isImagesConfigurtionRequested = false
     
+    var isImagesConfigurtionObtained = false
+    
     init(withApi api: IMovieApi,
          withApiKey apiKey: String,
          withYouTubeUrl youTubeBaseUrl: String,
@@ -38,6 +40,7 @@ class MovieClient: IMovieClient {
             .map { event in
                 if let config = event?.imagesConfiguration {
                     self.imagesUrlComposer.setImagesConfig(config)
+                    self.isImagesConfigurtionObtained = true
                 }
                 return event?.imagesConfiguration
         }
@@ -46,7 +49,8 @@ class MovieClient: IMovieClient {
     func getPopularMovies(pageOrdinal: Int) -> Observable<[Movie]?> {
         let moviesRequest = api
             .getPopularMovies(apiKey: apiKey, pageOrdinal: pageOrdinal)
-            .map { event in self.processMovies(moviesResponse: event) }
+            .map { event in self.processMovies(moviesResponse: event)
+        }
         
         if !isImagesConfigurtionRequested {
             return requestImagesConfig(withMoviesRequest: moviesRequest)
@@ -93,12 +97,16 @@ class MovieClient: IMovieClient {
             return nil
         }
         
-        self.composeImaeUrls(forMovies: &movies)
+        composeImaeUrls(forMovies: &movies)
         
         return movies
     }
     
     private func composeImaeUrls(forMovies movies: inout [Movie]) {
+        while !isImagesConfigurtionObtained {
+            Thread.sleep(forTimeInterval: 2000)
+        }
+        
         for movie in movies {
             movie.posterPath = self.imagesUrlComposer.composeUrl(url: movie.posterPath)
         }
