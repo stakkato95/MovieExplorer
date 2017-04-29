@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Kingfisher
 
 class MovieCell: UICollectionViewCell, ICell {
     
@@ -20,6 +21,6 @@ class MovieCell: UICollectionViewCell, ICell {
     @IBOutlet var image: UIImageView!
     
     func setData(data: TData) {
-//        image.loadImage
+        image.kf.setImage(with: try? data.posterPath.asURL())
     }
 }

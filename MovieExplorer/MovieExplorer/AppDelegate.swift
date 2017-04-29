@@ -32,6 +32,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             CoreModule.initModule(container: container)
             return container
         }()
+        
+        DependencyContainer.container.resolve(IMovieClient.self)?
+            .getImagesConfiguration()
+            .subscribe(onNext: { imagesConfig in
+                print("DONE")
+            }, onError: { error in
+                print("ERROR")
+            })
+        
         return true
     }
 }

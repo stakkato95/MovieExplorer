@@ -18,25 +18,60 @@ class MovieClient: IMovieClient {
     
     let api: IMovieApi
     
-    init(withApi api: IMovieApi, withApiKey apiKey: String, withYouTubeUrl youTubeBaseUrl: String) {
+    var imagesUrlComposer: IImageUrlComposer
+    
+    init(withApi api: IMovieApi,
+         withApiKey apiKey: String,
+         withYouTubeUrl youTubeBaseUrl: String,
+         withUrlComposer imagesUrlComposer: IImageUrlComposer) {
         self.apiKey = apiKey
         self.youTubeBaseUrl = youTubeBaseUrl
         self.api = api
+        self.imagesUrlComposer = imagesUrlComposer
     }
     
     func getImagesConfiguration() -> Observable<ImagesConfiguration?> {
-        return api.getImagesConfiguration(apiKey: apiKey).map { event in event?.imagesConfiguration }
+        return api
+            .getImagesConfiguration(apiKey: apiKey)
+            .map { event in
+                if let config = event?.imagesConfiguration {
+                    self.imagesUrlComposer.setImagesConfig(config)
+                }
+                return event?.imagesConfiguration
+        }
     }
     
     func getPopularMovies(pageOrdinal: Int) -> Observable<[Movie]?> {
-        return api.getPopularMovies(apiKey: apiKey, pageOrdinal: pageOrdinal).map { event in event?.movies }
+        return api
+            .getPopularMovies(apiKey: apiKey, pageOrdinal: pageOrdinal)
+            .map { event in self.processMovies(moviesResponse: event) }
     }
     
     func getTopRatedMovies(pageOrdinal: Int) -> Observable<[Movie]?> {
-        return api.getTopRatedMovies(apiKey: apiKey, pageOrdinal: pageOrdinal).map { event in event?.movies }
+        return api
+            .getTopRatedMovies(apiKey: apiKey, pageOrdinal: pageOrdinal)
+            .map { event in self.processMovies(moviesResponse: event) }
     }
     
     func getNowPlayingMovies(pageOrdinal: Int) -> Observable<[Movie]?> {
-        return api.getNowPlayingMovies(apiKey: apiKey, pageOrdinal: pageOrdinal).map { event in event?.movies }
+        return api
+            .getNowPlayingMovies(apiKey: apiKey, pageOrdinal: pageOrdinal)
+            .map { event in self.processMovies(moviesResponse: event) }
+    }
+    
+    private func processMovies(moviesResponse: MoviesResponse?) -> [Movie]? {
+        guard var movies = moviesResponse?.movies else {
+            return nil
+        }
+        
+        self.composeImaeUrls(forMovies: &movies)
+        
+        return movies
+    }
+    
+    private func composeImaeUrls(forMovies movies: inout [Movie]) {
+        for movie in movies {
+            movie.posterPath = self.imagesUrlComposer.composeUrl(url: movie.posterPath)
+        }
     }
 }

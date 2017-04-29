@@ -30,6 +30,9 @@
                 <constraint firstAttribute="trailing" secondItem="GUV-IQ-stK" secondAttribute="trailing" id="NTx-Y5-8be"/>
                 <constraint firstItem="GUV-IQ-stK" firstAttribute="leading" secondItem="HZK-zf-eqM" secondAttribute="leading" id="cuK-JP-Iaq"/>
             </constraints>
+            <connections>
+                <outlet property="image" destination="GUV-IQ-stK" id="UaG-dw-3O5"/>
+            </connections>
             <point key="canvasLocation" x="-57" y="-456"/>
         </collectionViewCell>
     </objects>
