@@ -10,13 +10,28 @@ import Foundation
 import RxSwift
 import UIKit
 
-class MoviesViewController: UIViewController, IMoviesView {
+class MoviesViewController: UIViewController, IMoviesView, UICollectionViewDataSource {
     
     @IBOutlet var nowPlayingCollection: UICollectionView!
     
     @IBOutlet var topRatedCollection: UICollectionView!
     
     @IBOutlet var popularCollection: UICollectionView!
+    
+    
+    
+    
+    
+    
+    
+    var data: [Movie]?
+    
+    
+    
+    
+    
+    
+    
     
     var p: IMoviePresenter!
     var presenter: IMoviePresenter {
@@ -32,20 +47,29 @@ class MoviesViewController: UIViewController, IMoviesView {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        nowPlayingCollection.register(
-            UINib(nibName: MovieCell.nibName, bundle: nil),
-            forCellWithReuseIdentifier: MovieCell.cellId
-        )
+        let nib = UINib(nibName: MovieCell.nibName, bundle: nil)
         
-        topRatedCollection.register(
-            UINib(nibName: MovieCell.nibName, bundle: nil),
-            forCellWithReuseIdentifier: MovieCell.cellId
-        )
+//        nowPlayingCollection.register(nib, forCellWithReuseIdentifier: MovieCell.cellId)
         
-        popularCollection.register(
-            UINib(nibName: MovieCell.nibName, bundle: nil),
-            forCellWithReuseIdentifier: MovieCell.cellId
-        )
+        
+        
+        
+        
+        
+        
+        
+        nowPlayingCollection.dataSource = self
+        
+        
+        
+        
+        
+        
+        
+        
+        topRatedCollection.register(nib, forCellWithReuseIdentifier: MovieCell.cellId)
+        
+        popularCollection.register(nib, forCellWithReuseIdentifier: MovieCell.cellId)
         
         presenter.loadData()
     }
@@ -56,37 +80,63 @@ class MoviesViewController: UIViewController, IMoviesView {
     }
     
     func showMovies(moviesCollection: (nowPlaying: [Movie]?, topRated: [Movie]?, popular: [Movie]?)) {
-        let nowPlayingMovies = moviesCollection.nowPlaying
-        if nowPlayingMovies != nil {
-            let nowPlayingDelegate = CollectionViewDelegate<Movie, MovieCell>(
-                withData: nowPlayingMovies!,
-                onItemSelectionListener: { movie in
-                    
-            }, cellId: MovieCell.cellId)
-            nowPlayingCollection.dataSource = nowPlayingDelegate
-            nowPlayingCollection.delegate = nowPlayingDelegate
+        DispatchQueue.main.async() {
+            self.data = moviesCollection.nowPlaying
+            self.nowPlayingCollection.reloadData()
+            
+            
+//            if let nowPlayingMovies = moviesCollection.nowPlaying {
+//                let nowPlayingDelegate = CollectionViewDelegate<Movie, MovieCell>(
+//                    withData: nowPlayingMovies,
+//                    onItemSelectionListener: { movie in
+//                        
+//                }, cellId: MovieCell.cellId)
+//                self.nowPlayingCollection.dataSource = nowPlayingDelegate
+////                self.nowPlayingCollection.delegate = nowPlayingDelegate
+//                self.nowPlayingCollection.reloadData()
+//            }
+            
+//            if let topRatedMovies = moviesCollection.topRated {
+//                let topRatedDelegate = CollectionViewDelegate<Movie, MovieCell>(
+//                    withData: topRatedMovies,
+//                    onItemSelectionListener: { movie in
+//                        
+//                }, cellId: MovieCell.cellId)
+////                self.topRatedCollection.dataSource = topRatedDelegate
+//                self.topRatedCollection.delegate = topRatedDelegate
+//                self.topRatedCollection.reloadData()
+//            }
+//            
+//            if let popularMovies = moviesCollection.popular {
+//                let popularDelegate = CollectionViewDelegate<Movie, MovieCell>(
+//                    withData: popularMovies,
+//                    onItemSelectionListener: { movie in
+//                        
+//                }, cellId: MovieCell.cellId)
+//                self.popularCollection.dataSource = popularDelegate
+//                self.popularCollection.delegate = popularDelegate
+//                self.popularCollection.reloadData()
+//            }
         }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return data?.count ?? 0
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCell.cellId, for: indexPath)
         
-        let topRatedMovies = moviesCollection.topRated
-        if topRatedMovies != nil {
-            let topRatedDelegate = CollectionViewDelegate<Movie, MovieCell>(
-                withData: topRatedMovies!,
-                onItemSelectionListener: { movie in
-                    
-            }, cellId: MovieCell.cellId)
-            topRatedCollection.dataSource = topRatedDelegate
-            topRatedCollection.delegate = topRatedDelegate
-        }
+        (cell as! MovieCell).setData(data: data![indexPath.item])
         
-        let popularMovies = moviesCollection.popular
-        if popularMovies != nil {
-            let popularDelegate = CollectionViewDelegate<Movie, MovieCell>(
-                withData: popularMovies!,
-                onItemSelectionListener: { movie in
-                    
-            }, cellId: MovieCell.cellId)
-            popularCollection.dataSource = popularDelegate
-            popularCollection.delegate = popularDelegate
-        }
+        return cell
     }
 }

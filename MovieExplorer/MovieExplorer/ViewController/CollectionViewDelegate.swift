@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class CollectionViewDelegate<TData, TCellType: ICell>: NSObject, UICollectionViewDelegate, UICollectionViewDataSource {
+class CollectionViewDelegate<TData, TCellType: ICell>: NSObject, UICollectionViewDataSource {
     
     var data: [TData]
     
