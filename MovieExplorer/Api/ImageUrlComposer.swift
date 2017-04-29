@@ -10,17 +10,17 @@ import Foundation
 
 class ImageUrlComposer: IImageUrlComposer {
     
-    var imagesConfig: ImagesConfiguration!
+    var imagesConfig: ImagesConfiguration?
     
     func setImagesConfig(_ imagesConfig: ImagesConfiguration) {
         self.imagesConfig = imagesConfig
     }
     
     func composeUrl(url: String) -> String? {
-        guard imagesConfig.baseUrl == nil || imagesConfig.posterSizes == nil else {
+        guard imagesConfig != nil && imagesConfig?.baseUrl != nil && imagesConfig?.posterSizes != nil else {
             return nil
         }
         
-        return imagesConfig.baseUrl! + imagesConfig.posterSizes![0] + url
+        return imagesConfig!.baseUrl! + imagesConfig!.posterSizes![0] + url
     }
 }

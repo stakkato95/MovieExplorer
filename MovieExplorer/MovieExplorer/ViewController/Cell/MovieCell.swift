@@ -21,6 +21,8 @@ class MovieCell: UICollectionViewCell, ICell {
     @IBOutlet var image: UIImageView!
     
     func setData(data: TData) {
-        image.kf.setImage(with: try? data.posterPath.asURL())
+        if let url = try? data.posterPath.asURL() {
+            image.kf.setImage(with: url)
+        }
     }
 }

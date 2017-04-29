@@ -20,6 +20,8 @@ class MovieClient: IMovieClient {
     
     var imagesUrlComposer: IImageUrlComposer
     
+    var isImagesConfigurtionRequested = false
+    
     init(withApi api: IMovieApi,
          withApiKey apiKey: String,
          withYouTubeUrl youTubeBaseUrl: String,
@@ -42,21 +44,48 @@ class MovieClient: IMovieClient {
     }
     
     func getPopularMovies(pageOrdinal: Int) -> Observable<[Movie]?> {
-        return api
+        let moviesRequest = api
             .getPopularMovies(apiKey: apiKey, pageOrdinal: pageOrdinal)
             .map { event in self.processMovies(moviesResponse: event) }
+        
+        if !isImagesConfigurtionRequested {
+            return requestImagesConfig(withMoviesRequest: moviesRequest)
+        }
+        
+        return moviesRequest
     }
     
     func getTopRatedMovies(pageOrdinal: Int) -> Observable<[Movie]?> {
-        return api
+        let moviesRequest = api
             .getTopRatedMovies(apiKey: apiKey, pageOrdinal: pageOrdinal)
             .map { event in self.processMovies(moviesResponse: event) }
+        
+        if !isImagesConfigurtionRequested {
+            return requestImagesConfig(withMoviesRequest: moviesRequest)
+        }
+        
+        return moviesRequest
     }
     
     func getNowPlayingMovies(pageOrdinal: Int) -> Observable<[Movie]?> {
-        return api
+        let moviesRequest = api
             .getNowPlayingMovies(apiKey: apiKey, pageOrdinal: pageOrdinal)
             .map { event in self.processMovies(moviesResponse: event) }
+        
+        if !isImagesConfigurtionRequested {
+            return requestImagesConfig(withMoviesRequest: moviesRequest)
+        }
+        
+        return moviesRequest
+    }
+    
+    private func requestImagesConfig(withMoviesRequest: Observable<[Movie]?>) -> Observable<[Movie]?> {
+        isImagesConfigurtionRequested = true
+        return Observable.zip(getImagesConfiguration(), withMoviesRequest)
+            .map { imagesConfig, movies in
+                self.isImagesConfigurtionRequested = true
+                return movies
+        }
     }
     
     private func processMovies(moviesResponse: MoviesResponse?) -> [Movie]? {
