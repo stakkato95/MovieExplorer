@@ -26,7 +26,7 @@
             </objects>
             <point key="canvasLocation" x="-1705" y="687"/>
         </scene>
-        <!--Movies View Controller-->
+        <!--Movies-->
         <scene sceneID="2aH-az-R56">
             <objects>
                 <viewController id="sn4-Nl-MeB" customClass="MoviesViewController" customModule="MovieExplorer" customModuleProvider="target" sceneMemberID="viewController">
@@ -42,10 +42,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XvS-Jh-hPI">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                        <rect key="frame" x="8" y="0.0" width="359" height="667"/>
                                         <subviews>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="rKj-XE-mZY">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="170"/>
+                                                <rect key="frame" x="0.0" y="8" width="359" height="162.5"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="rKj-XE-mZY" secondAttribute="height" multiplier="375:170" id="Eqv-vE-Wwx"/>
@@ -59,7 +59,7 @@
                                                 <cells/>
                                             </collectionView>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="8ga-jT-jan">
-                                                <rect key="frame" x="0.0" y="178" width="375" height="170"/>
+                                                <rect key="frame" x="0.0" y="178.5" width="359" height="163"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="8ga-jT-jan" secondAttribute="height" multiplier="375:170" id="09u-wA-UyP"/>
@@ -73,7 +73,7 @@
                                                 <cells/>
                                             </collectionView>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Gwo-JC-8Mz">
-                                                <rect key="frame" x="0.0" y="356" width="375" height="170"/>
+                                                <rect key="frame" x="0.0" y="349.5" width="359" height="162.5"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="Gwo-JC-8Mz" secondAttribute="height" multiplier="375:170" id="eXl-oW-apB"/>
@@ -98,7 +98,7 @@
                                             <constraint firstAttribute="trailing" secondItem="Gwo-JC-8Mz" secondAttribute="trailing" id="dJz-32-1lG"/>
                                             <constraint firstItem="rKj-XE-mZY" firstAttribute="width" secondItem="XvS-Jh-hPI" secondAttribute="width" id="fba-b8-B45"/>
                                             <constraint firstItem="rKj-XE-mZY" firstAttribute="leading" secondItem="XvS-Jh-hPI" secondAttribute="leading" id="ii5-OX-fEX"/>
-                                            <constraint firstItem="rKj-XE-mZY" firstAttribute="top" secondItem="XvS-Jh-hPI" secondAttribute="top" id="ol4-im-xCB"/>
+                                            <constraint firstItem="rKj-XE-mZY" firstAttribute="top" secondItem="XvS-Jh-hPI" secondAttribute="top" constant="8" id="ol4-im-xCB"/>
                                             <constraint firstAttribute="trailing" secondItem="rKj-XE-mZY" secondAttribute="trailing" id="r6K-tr-Lt3"/>
                                             <constraint firstItem="8ga-jT-jan" firstAttribute="width" secondItem="XvS-Jh-hPI" secondAttribute="width" id="xEa-nB-ffa"/>
                                             <constraint firstItem="8ga-jT-jan" firstAttribute="top" secondItem="rKj-XE-mZY" secondAttribute="bottom" constant="8" id="ynC-o4-fhB"/>
@@ -109,8 +109,8 @@
                                     <constraint firstAttribute="bottom" secondItem="XvS-Jh-hPI" secondAttribute="bottom" id="2hA-Zt-OLO"/>
                                     <constraint firstItem="XvS-Jh-hPI" firstAttribute="centerX" secondItem="EN3-aW-cMh" secondAttribute="centerX" id="8pP-5h-tsb"/>
                                     <constraint firstItem="XvS-Jh-hPI" firstAttribute="centerY" secondItem="EN3-aW-cMh" secondAttribute="centerY" id="BaC-ko-va1"/>
-                                    <constraint firstItem="XvS-Jh-hPI" firstAttribute="leading" secondItem="EN3-aW-cMh" secondAttribute="leading" id="anG-c9-77B"/>
-                                    <constraint firstAttribute="trailing" secondItem="XvS-Jh-hPI" secondAttribute="trailing" id="czp-wX-Dfa"/>
+                                    <constraint firstItem="XvS-Jh-hPI" firstAttribute="leading" secondItem="EN3-aW-cMh" secondAttribute="leading" constant="8" id="anG-c9-77B"/>
+                                    <constraint firstAttribute="trailing" secondItem="XvS-Jh-hPI" secondAttribute="trailing" constant="8" id="czp-wX-Dfa"/>
                                     <constraint firstItem="XvS-Jh-hPI" firstAttribute="top" secondItem="EN3-aW-cMh" secondAttribute="top" id="m5T-DD-gV3"/>
                                 </constraints>
                             </scrollView>
@@ -124,7 +124,7 @@
                             <constraint firstItem="EN3-aW-cMh" firstAttribute="width" secondItem="8cY-cU-XrI" secondAttribute="width" id="l5g-8G-g6W"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="rB9-xB-KM6"/>
+                    <navigationItem key="navigationItem" title="Movies" id="rB9-xB-KM6"/>
                     <connections>
                         <outlet property="nowPlayingCollection" destination="rKj-XE-mZY" id="hfW-1W-Nhe"/>
                         <outlet property="popularCollection" destination="Gwo-JC-8Mz" id="ZEj-2d-RIm"/>
