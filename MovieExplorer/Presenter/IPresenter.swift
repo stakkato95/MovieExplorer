@@ -11,4 +11,6 @@ import Foundation
 protocol IPresenter {
     
     func loadData()
+    
+    func setView(view: Any?)
 }

@@ -16,11 +16,14 @@ class ClientModule {
     static let youTubeBaseUrl = "https://www.youtube.com/watch?v="
     
     static func initModule(container: Container) {
-        container.register(IMovieApi.self) { _ in MovieApi() }
+        container.register(IMovieApi.self) { _ in MovieApi() }.inObjectScope(.container);
+        container.register(IImageUrlComposer.self) { _ in ImageUrlComposer() }.inObjectScope(.container)
+        
         container.register(IMovieClient.self) { resolver in
-            return MovieClient(withApi: resolver.resolve(IMovieApi.self)!,
-                               withApiKey: apiKey,
-                               withYouTubeUrl: youTubeBaseUrl)
-        }
+            MovieClient(withApi: resolver.resolve(IMovieApi.self)!,
+                        withApiKey: apiKey,
+                        withYouTubeUrl: youTubeBaseUrl,
+                        withUrlComposer: resolver.resolve(IImageUrlComposer.self)!)
+            }.inObjectScope(.container);
     }
 }

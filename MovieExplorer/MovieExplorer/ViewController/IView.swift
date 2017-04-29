@@ -10,9 +10,5 @@ import Foundation
 
 protocol IView {
     
-    associatedtype TPresenter
-    
     func showError(errorMessage: String)
-    
-    var presenter: TPresenter { get }
 }

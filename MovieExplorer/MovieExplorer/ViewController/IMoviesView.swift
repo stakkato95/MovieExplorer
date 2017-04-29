@@ -7,11 +7,8 @@
 //
 
 import Foundation
-import RxSwift
 
 protocol IMoviesView: IView {
     
-    typealias TPresenter = IMoviePresenter
-    
-    func showMovies(movies: [Movie])
+    func showMovies(moviesCollection: (nowPlaying: [Movie]?, topRated: [Movie]?, popular: [Movie]?))
 }
