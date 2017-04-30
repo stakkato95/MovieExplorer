@@ -32,8 +32,4 @@ class MoviesPresenter<View: IMoviesView>: IMoviePresenter {
                 self.view?.showError(errorMessage: error.localizedDescription)
             });
     }
-    
-    func navigateToDetail() {
-        
-    }
 }

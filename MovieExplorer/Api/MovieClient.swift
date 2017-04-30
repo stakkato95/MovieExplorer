@@ -59,6 +59,12 @@ class MovieClient: IMovieClient {
             .map { event in self.processMovies(moviesResponse: event) }
     }
     
+    func getSimilarMovies(movieId: Int) -> Observable<[Movie]?> {
+        return api
+            .getSimilarMovies(apiKey: apiKey, movieId: movieId)
+            .map { moviesResponse in moviesResponse?.movies }
+    }
+    
     private func processMovies(moviesResponse: MoviesResponse?) -> [Movie]? {
         guard var movies = moviesResponse?.movies else {
             return nil

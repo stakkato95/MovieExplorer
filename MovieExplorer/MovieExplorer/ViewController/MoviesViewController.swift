@@ -20,6 +20,8 @@ class MoviesViewController: UIViewController, IMoviesView {
     
     @IBOutlet var progressContainer: UIView!
     
+    let detailSegueId = "movieDetail"
+    
     var nowPlayingDelegate: CollectionViewDelegate<Movie, MovieCell>!
     
     var topRatedDelegate: CollectionViewDelegate<Movie, MovieCell>!
@@ -54,19 +56,20 @@ class MoviesViewController: UIViewController, IMoviesView {
         popularCollection.register(nib, forCellWithReuseIdentifier: MovieCell.cellId)
         
         nowPlayingDelegate = CollectionViewDelegate<Movie, MovieCell>(cellId: MovieCell.cellId) { movie in
-            
+//            performSegue(withIdentifier: detailSegueId, sender: movie)
+//            print(movie.posterPath)
         }
         nowPlayingCollection.dataSource = nowPlayingDelegate
         nowPlayingCollection.delegate = nowPlayingDelegate
         
         topRatedDelegate = CollectionViewDelegate<Movie, MovieCell>(cellId: MovieCell.cellId) { movie in
-            
+            print(movie.posterPath)
         }
         topRatedCollection.dataSource = topRatedDelegate
         topRatedCollection.delegate = topRatedDelegate
         
         popularDelegate = CollectionViewDelegate<Movie, MovieCell>(cellId: MovieCell.cellId) { movie in
-            
+            print(movie.posterPath)
         }
         popularCollection.dataSource = popularDelegate
         popularCollection.delegate = popularDelegate
@@ -80,7 +83,7 @@ class MoviesViewController: UIViewController, IMoviesView {
     }
     
     func showMovies(moviesCollection: (nowPlaying: [Movie]?, topRated: [Movie]?, popular: [Movie]?)) {
-        performSegue(withIdentifier: "movieDetail", sender: self)
+//        performSegue(withIdentifier: "movieDetail", sender: self)
         
         progressContainer.isHidden = true
         
@@ -92,5 +95,11 @@ class MoviesViewController: UIViewController, IMoviesView {
         
         popularDelegate.setData(moviesCollection.popular)
         popularCollection.reloadData()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == detailSegueId {
+//            segue.destination as
+        }
     }
 }

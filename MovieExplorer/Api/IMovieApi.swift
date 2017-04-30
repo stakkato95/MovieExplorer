@@ -18,4 +18,6 @@ protocol IMovieApi {
     func getTopRatedMovies(apiKey: String, pageOrdinal: Int) -> Observable<MoviesResponse?>
     
     func getNowPlayingMovies(apiKey: String, pageOrdinal: Int) -> Observable<MoviesResponse?>
+    
+    func getSimilarMovies(apiKey: String, movieId: Int) -> Observable<MoviesResponse?>
 }
