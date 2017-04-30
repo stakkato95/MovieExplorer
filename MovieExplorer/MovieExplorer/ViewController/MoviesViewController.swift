@@ -18,6 +18,8 @@ class MoviesViewController: UIViewController, IMoviesView {
     
     @IBOutlet var popularCollection: UICollectionView!
     
+    @IBOutlet var progressContainer: UIView!
+    
     var nowPlayingDelegate: CollectionViewDelegate<Movie, MovieCell>!
     
     var topRatedDelegate: CollectionViewDelegate<Movie, MovieCell>!
@@ -78,6 +80,8 @@ class MoviesViewController: UIViewController, IMoviesView {
     }
     
     func showMovies(moviesCollection: (nowPlaying: [Movie]?, topRated: [Movie]?, popular: [Movie]?)) {
+        progressContainer.isHidden = true
+        
         nowPlayingDelegate.setData(moviesCollection.nowPlaying)
         nowPlayingCollection.reloadData()
         
