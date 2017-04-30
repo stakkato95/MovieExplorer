@@ -13,11 +13,11 @@ class CollectionViewDelegate<TData, TCellType: ICell>: NSObject, UICollectionVie
     
     var data: [TData]?
     
-    var onItemSelected: (TData) -> Void
+    var onItemSelected: ((TData) -> Void)?
     
     var cellId: String
     
-    init(cellId: String, onItemSelectionListener onItemSelected: @escaping (TData) -> Void) {
+    init(cellId: String, onItemSelectionListener onItemSelected: ((TData) -> Void)? = nil) {
         self.onItemSelected = onItemSelected
         self.cellId = cellId
     }
@@ -40,6 +40,8 @@ class CollectionViewDelegate<TData, TCellType: ICell>: NSObject, UICollectionVie
     }
     
     func collectionView(_: UICollectionView, didSelectItemAt: IndexPath) {
-        onItemSelected(data![didSelectItemAt.item])
+        if onItemSelected != nil {
+            onItemSelected!(data![didSelectItemAt.item])
+        }
     }
 }

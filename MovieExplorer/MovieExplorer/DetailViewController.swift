@@ -18,6 +18,22 @@ class DetailViewController: UIViewController, IDetailView {
     
     @IBOutlet var backgroundContainer: UIView!
     
+    @IBOutlet var similarMoviesCollection: UICollectionView!
+    
+    @IBOutlet var progressContainer: UIView!
+    
+    @IBOutlet var movieTitle: UILabel!
+    
+    @IBOutlet var movieReleaseDate: UILabel!
+    
+    @IBOutlet var movieDescription: UILabel!
+    
+    @IBAction func playVideo() {
+        
+    }
+    
+    var similarMoviesDelegate: CollectionViewDelegate<Movie, MovieCell>?
+    
     var p: IDetailPresenter?
     var presenter: IDetailPresenter {
         get {
@@ -32,6 +48,16 @@ class DetailViewController: UIViewController, IDetailView {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let nib = UINib(nibName: MovieCell.nibName, bundle: nil)
+        similarMoviesCollection.register(nib, forCellWithReuseIdentifier: MovieCell.cellId)
+        similarMoviesCollection.addShadow()
+        similarMoviesCollection.contentInsetBy(top: 0, left: 12, bottom: 0, right: 12)
+        
+        similarMoviesDelegate = CollectionViewDelegate<Movie, MovieCell>(cellId: MovieCell.cellId)
+        similarMoviesCollection.delegate = similarMoviesDelegate
+        similarMoviesCollection.dataSource = similarMoviesDelegate
+        
         presenter.loadData()
     }
     
@@ -40,8 +66,16 @@ class DetailViewController: UIViewController, IDetailView {
             backgroundImage.kf.setImage(with: url)
             image.kf.setImage(with: url)
         }
-        
         applyBlurToBackground()
+        
+        movieTitle.text = movie.title
+        movieReleaseDate.text = "Release Date: \(movie.releaseDate)"
+        movieDescription.text = movie.overview
+        
+        similarMoviesDelegate!.setData(similarMovies)
+        similarMoviesCollection.reloadData()
+        
+        progressContainer.isHidden = true
     }
     
     func showError(errorMessage: String) {

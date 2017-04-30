@@ -44,25 +44,25 @@ class MovieClient: IMovieClient {
     func getPopularMovies(pageOrdinal: Int) -> Observable<[Movie]?> {
         return api
             .getPopularMovies(apiKey: apiKey, pageOrdinal: pageOrdinal)
-            .map { event in self.processMovies(moviesResponse: event) }
+            .map { moviesResponse in self.processMovies(moviesResponse: moviesResponse) }
     }
     
     func getTopRatedMovies(pageOrdinal: Int) -> Observable<[Movie]?> {
         return api
             .getTopRatedMovies(apiKey: apiKey, pageOrdinal: pageOrdinal)
-            .map { event in self.processMovies(moviesResponse: event) }
+            .map { moviesResponse in self.processMovies(moviesResponse: moviesResponse) }
     }
     
     func getNowPlayingMovies(pageOrdinal: Int) -> Observable<[Movie]?> {
         return api
             .getNowPlayingMovies(apiKey: apiKey, pageOrdinal: pageOrdinal)
-            .map { event in self.processMovies(moviesResponse: event) }
+            .map { moviesResponse in self.processMovies(moviesResponse: moviesResponse) }
     }
     
     func getSimilarMovies(movieId: Int) -> Observable<[Movie]?> {
         return api
             .getSimilarMovies(apiKey: apiKey, movieId: movieId)
-            .map { moviesResponse in moviesResponse?.movies }
+            .map { moviesResponse in self.processMovies(moviesResponse: moviesResponse) }
     }
     
     private func processMovies(moviesResponse: MoviesResponse?) -> [Movie]? {
