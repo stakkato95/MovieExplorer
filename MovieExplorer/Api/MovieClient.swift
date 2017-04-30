@@ -20,10 +20,6 @@ class MovieClient: IMovieClient {
     
     var imagesUrlComposer: IImageUrlComposer
     
-    var isImagesConfigurtionRequested = false
-    
-    var isImagesConfigurtionObtained = false
-    
     init(withApi api: IMovieApi,
          withApiKey apiKey: String,
          withYouTubeUrl youTubeBaseUrl: String,
@@ -40,56 +36,27 @@ class MovieClient: IMovieClient {
             .map { event in
                 if let config = event?.imagesConfiguration {
                     self.imagesUrlComposer.setImagesConfig(config)
-                    self.isImagesConfigurtionObtained = true
                 }
                 return event?.imagesConfiguration
         }
     }
     
     func getPopularMovies(pageOrdinal: Int) -> Observable<[Movie]?> {
-        let moviesRequest = api
+        return api
             .getPopularMovies(apiKey: apiKey, pageOrdinal: pageOrdinal)
-            .map { event in self.processMovies(moviesResponse: event)
-        }
-        
-        if !isImagesConfigurtionRequested {
-            return requestImagesConfig(withMoviesRequest: moviesRequest)
-        }
-        
-        return moviesRequest
+            .map { event in self.processMovies(moviesResponse: event) }
     }
     
     func getTopRatedMovies(pageOrdinal: Int) -> Observable<[Movie]?> {
-        let moviesRequest = api
+        return api
             .getTopRatedMovies(apiKey: apiKey, pageOrdinal: pageOrdinal)
             .map { event in self.processMovies(moviesResponse: event) }
-        
-        if !isImagesConfigurtionRequested {
-            return requestImagesConfig(withMoviesRequest: moviesRequest)
-        }
-        
-        return moviesRequest
     }
     
     func getNowPlayingMovies(pageOrdinal: Int) -> Observable<[Movie]?> {
-        let moviesRequest = api
+        return api
             .getNowPlayingMovies(apiKey: apiKey, pageOrdinal: pageOrdinal)
             .map { event in self.processMovies(moviesResponse: event) }
-        
-        if !isImagesConfigurtionRequested {
-            return requestImagesConfig(withMoviesRequest: moviesRequest)
-        }
-        
-        return moviesRequest
-    }
-    
-    private func requestImagesConfig(withMoviesRequest: Observable<[Movie]?>) -> Observable<[Movie]?> {
-        isImagesConfigurtionRequested = true
-        return Observable.zip(getImagesConfiguration(), withMoviesRequest)
-            .map { imagesConfig, movies in
-                self.isImagesConfigurtionRequested = true
-                return movies
-        }
     }
     
     private func processMovies(moviesResponse: MoviesResponse?) -> [Movie]? {
@@ -97,16 +64,12 @@ class MovieClient: IMovieClient {
             return nil
         }
         
-        composeImaeUrls(forMovies: &movies)
+        composeImageUrls(forMovies: &movies)
         
         return movies
     }
     
-    private func composeImaeUrls(forMovies movies: inout [Movie]) {
-        while !isImagesConfigurtionObtained {
-            Thread.sleep(forTimeInterval: 2000)
-        }
-        
+    private func composeImageUrls(forMovies movies: inout [Movie]) {
         for movie in movies {
             movie.posterPath = self.imagesUrlComposer.composeUrl(url: movie.posterPath)
         }
