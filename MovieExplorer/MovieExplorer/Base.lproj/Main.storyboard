@@ -213,11 +213,37 @@
                         <outlet property="popularCollection" destination="Gwo-JC-8Mz" id="ZEj-2d-RIm"/>
                         <outlet property="progressContainer" destination="529-cS-g5w" id="iJ5-pt-hA9"/>
                         <outlet property="topRatedCollection" destination="8ga-jT-jan" id="zJp-2P-YfC"/>
+                        <segue destination="nQr-IJ-ob5" kind="show" identifier="movieDetail" id="OJi-U2-v5V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Ae-qG-ZY9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-826.39999999999998" y="686.80659670164926"/>
+        </scene>
+        <!--Movie detail-->
+        <scene sceneID="9WI-y6-q4T">
+            <objects>
+                <viewController title="Movie detail" id="nQr-IJ-ob5" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="sD0-1e-0uh"/>
+                        <viewControllerLayoutGuide type="bottom" id="zS1-3I-EsM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ySy-UQ-5Hq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ult-CC-8iW">
+                                <rect key="frame" x="16" y="72" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.048407458440000002" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tq2-te-cdw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="177" y="687"/>
         </scene>
     </scenes>
 </document>

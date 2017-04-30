@@ -80,6 +80,8 @@ class MoviesViewController: UIViewController, IMoviesView {
     }
     
     func showMovies(moviesCollection: (nowPlaying: [Movie]?, topRated: [Movie]?, popular: [Movie]?)) {
+        performSegue(withIdentifier: "movieDetail", sender: self)
+        
         progressContainer.isHidden = true
         
         nowPlayingDelegate.setData(moviesCollection.nowPlaying)
