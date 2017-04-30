@@ -10,5 +10,5 @@ import Foundation
 
 protocol IDetailView: IView {
     
-    func showSimilarMovies(similarMovies: [Movie]?)
+    func showContent(movie: Movie, similarMovies: [Movie]?)
 }

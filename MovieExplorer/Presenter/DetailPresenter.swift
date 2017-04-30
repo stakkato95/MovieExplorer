@@ -15,7 +15,7 @@ class DetailPresenter: IDetailPresenter {
     
     var view: IDetailView!
     
-    var movie: Movie?
+    var movie: Movie!
     
     init(detailUseCase: IDetailUseCase) {
         self.detailUseCase = detailUseCase
@@ -35,7 +35,7 @@ class DetailPresenter: IDetailPresenter {
             .subscribeOn(ConcurrentDispatchQueueScheduler.init(qos: DispatchQoS.utility))
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { movies in
-                self.view.showSimilarMovies(similarMovies: movies)
+                self.view.showContent(movie: self.movie, similarMovies: movies)
             }, onError: { error in
                 self.view.showError(errorMessage: error.localizedDescription)
             })
