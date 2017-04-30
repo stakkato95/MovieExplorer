@@ -10,5 +10,4 @@ import Foundation
 
 protocol IMoviePresenter: IPresenter {
     
-    func navigateToDetail()
 }

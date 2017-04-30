@@ -34,6 +34,11 @@ class MovieApi: IMovieApi {
         return performRequest(requestParameters, typeOfResponse: MoviesResponse.self)
     }
     
+    func getSimilarMovies(apiKey: String, movieId: Int) -> Observable<MoviesResponse?> {
+        let requestParameters = Router.getSimilarMovies(movieId: movieId, apiKey: apiKey)
+        return performRequest(requestParameters, typeOfResponse: MoviesResponse.self)
+    }
+    
     private func performRequest<TMappable: Mappable>(_ request: Router, typeOfResponse: TMappable.Type) -> Observable<TMappable?> {
         return RxAlamofire.requestString(request.method, try! request.path.asURL(), parameters: request.parameters).map { event in
             guard event.0.statusCode == 200 else {

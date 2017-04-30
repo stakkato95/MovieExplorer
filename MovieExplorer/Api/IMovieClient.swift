@@ -18,4 +18,6 @@ protocol IMovieClient {
     func getTopRatedMovies(pageOrdinal: Int) -> Observable<[Movie]?>
     
     func getNowPlayingMovies(pageOrdinal: Int) -> Observable<[Movie]?>
+    
+    func getSimilarMovies(movieId: Int) -> Observable<[Movie]?>
 }

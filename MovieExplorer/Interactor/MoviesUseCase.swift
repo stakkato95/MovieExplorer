@@ -27,13 +27,13 @@ class MoviesUseCase: IMoviesUaseCase {
     }
     
     func loadData() -> Observable<(nowPlaying: [Movie]?, topRated: [Movie]?, popular: [Movie]?)>? {
-        let observables = [
-            client.getPopularMovies(pageOrdinal: 1),
-            client.getTopRatedMovies(pageOrdinal: 1),
-            client.getNowPlayingMovies(pageOrdinal: 1)
-        ]
-        return Observable.zip(observables).map { moviesCollection in
-            return (nowPlaying: moviesCollection[0], topRated: moviesCollection[1], popular: moviesCollection[2])
+        let imgConfig = client.getImagesConfiguration()
+        let popular = client.getPopularMovies(pageOrdinal: 1)
+        let topRated = client.getTopRatedMovies(pageOrdinal: 1)
+        let nowPlaying = client.getNowPlayingMovies(pageOrdinal: 1)
+        
+        return Observable.zip(imgConfig, popular, topRated, nowPlaying) { imgConfig, popular, topRated, nowPlaying in
+            (nowPlaying: nowPlaying, topRated: topRated, popular: popular)
         }
     }
     

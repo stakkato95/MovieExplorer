@@ -16,8 +16,16 @@ class CoreModule {
             MoviesUseCase(client: resolver.resolve(IMovieClient.self)!)
         }
         
+        container.register(IDetailUseCase.self) { resolver in
+            DetailUseCase(client: resolver.resolve(IMovieClient.self)!)
+        }
+        
         container.register(IMoviePresenter.self) { resolver in
             MoviesPresenter<MoviesViewController>(moviesUseCase: resolver.resolve(IMoviesUaseCase.self)!)
+        }
+        
+        container.register(IDetailPresenter.self) { resolver in
+            DetailPresenter(detailUseCase: resolver.resolve(IDetailUseCase.self)!)
         }
     }
 }
