@@ -223,7 +223,7 @@
         <!--Movie detail-->
         <scene sceneID="9WI-y6-q4T">
             <objects>
-                <viewController title="Movie detail" id="nQr-IJ-ob5" sceneMemberID="viewController">
+                <viewController title="Movie detail" id="nQr-IJ-ob5" customClass="DetailViewController" customModule="MovieExplorer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="sD0-1e-0uh"/>
                         <viewControllerLayoutGuide type="bottom" id="zS1-3I-EsM"/>

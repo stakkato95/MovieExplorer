@@ -10,4 +10,5 @@ import Foundation
 
 protocol IDetailPresenter: IPresenter {
     
+    func setMovie(movie: Movie)
 }

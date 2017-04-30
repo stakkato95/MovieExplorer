@@ -15,7 +15,7 @@ class DetailPresenter: IDetailPresenter {
     
     var view: IDetailView!
     
-    var movieId: Int?
+    var movie: Movie?
     
     init(detailUseCase: IDetailUseCase) {
         self.detailUseCase = detailUseCase
@@ -25,13 +25,13 @@ class DetailPresenter: IDetailPresenter {
         self.view = view as! IDetailView
     }
     
+    func setMovie(movie: Movie) {
+        self.movie = movie
+    }
+    
     func loadData() {
-        guard movieId != nil else {
-            return
-        }
-        
         detailUseCase
-            .loadData(movieId: movieId!)
+            .loadData(movieId: movie!.id!)
             .subscribeOn(ConcurrentDispatchQueueScheduler.init(qos: DispatchQoS.utility))
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { movies in

@@ -20,7 +20,7 @@ class MoviesViewController: UIViewController, IMoviesView {
     
     @IBOutlet var progressContainer: UIView!
     
-    let detailSegueId = "movieDetail"
+    static let detailSegueId = "movieDetail"
     
     var nowPlayingDelegate: CollectionViewDelegate<Movie, MovieCell>!
     
@@ -55,22 +55,28 @@ class MoviesViewController: UIViewController, IMoviesView {
         topRatedCollection.register(nib, forCellWithReuseIdentifier: MovieCell.cellId)
         popularCollection.register(nib, forCellWithReuseIdentifier: MovieCell.cellId)
         
-        nowPlayingDelegate = CollectionViewDelegate<Movie, MovieCell>(cellId: MovieCell.cellId) { movie in
-//            performSegue(withIdentifier: detailSegueId, sender: movie)
-//            print(movie.posterPath)
+        let movieClick: (Movie) -> Void = { movie in
+            self.performSegue(withIdentifier: MoviesViewController.detailSegueId, sender: movie)
         }
+        
+        nowPlayingDelegate = CollectionViewDelegate<Movie, MovieCell>(
+            cellId: MovieCell.cellId,
+            onItemSelectionListener: movieClick
+        )
         nowPlayingCollection.dataSource = nowPlayingDelegate
         nowPlayingCollection.delegate = nowPlayingDelegate
         
-        topRatedDelegate = CollectionViewDelegate<Movie, MovieCell>(cellId: MovieCell.cellId) { movie in
-            print(movie.posterPath)
-        }
+        topRatedDelegate = CollectionViewDelegate<Movie, MovieCell>(
+            cellId: MovieCell.cellId,
+            onItemSelectionListener: movieClick
+        )
         topRatedCollection.dataSource = topRatedDelegate
         topRatedCollection.delegate = topRatedDelegate
         
-        popularDelegate = CollectionViewDelegate<Movie, MovieCell>(cellId: MovieCell.cellId) { movie in
-            print(movie.posterPath)
-        }
+        popularDelegate = CollectionViewDelegate<Movie, MovieCell>(
+            cellId: MovieCell.cellId,
+            onItemSelectionListener: movieClick
+        )
         popularCollection.dataSource = popularDelegate
         popularCollection.delegate = popularDelegate
         
@@ -98,8 +104,9 @@ class MoviesViewController: UIViewController, IMoviesView {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == detailSegueId {
-//            segue.destination as
+        if segue.identifier == MoviesViewController.detailSegueId {
+            let target = segue.destination as! DetailViewController
+            target.setMovieInfo(movie: sender as! Movie)
         }
     }
 }

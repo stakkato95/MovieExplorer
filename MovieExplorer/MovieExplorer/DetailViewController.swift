@@ -9,6 +9,34 @@
 import Foundation
 import UIKit
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, IDetailView {
     
+    var p: IDetailPresenter?
+    var presenter: IDetailPresenter {
+        get {
+            if p == nil {
+                p = DependencyContainer.container.resolve(IDetailPresenter.self)!
+            }
+            
+            return p!
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        presenter.loadData()
+    }
+    
+    func showSimilarMovies(similarMovies: [Movie]?) {
+        
+    }
+    
+    func showError(errorMessage: String) {
+        
+    }
+    
+    func setMovieInfo(movie: Movie) {
+        presenter.setMovie(movie: movie)
+    }
 }
